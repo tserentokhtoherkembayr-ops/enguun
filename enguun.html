@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="mn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чамд зориулж ✨</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #fdf6ee;
+      --blush: #f2c4b0;
+      --rose: #d4826a;
+      --deep: #3a2a22;
+      --gold: #c9a96e;
+      --soft: #e8d5c4;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--cream);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--deep);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* AURORA BACKGROUND */
+    .aurora {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0;
+      animation: auroraFloat ease-in-out infinite;
+    }
+
+    .aurora-blob:nth-child(1) {
+      width: 600px;
+      height: 500px;
+      top: -15%;
+      left: -10%;
+      background: radial-gradient(circle, rgba(242, 196, 176, 0.55) 0%, transparent 70%);
+      animation-duration: 18s;
+      animation-delay: 0s;
+      opacity: 0.7;
+    }
+
+    .aurora-blob:nth-child(2) {
+      width: 500px;
+      height: 450px;
+      top: 30%;
+      right: -8%;
+      background: radial-gradient(circle, rgba(201, 169, 110, 0.35) 0%, transparent 70%);
+      animation-duration: 22s;
+      animation-delay: -6s;
+      opacity: 0.5;
+    }
+
+    .aurora-blob:nth-child(3) {
+      width: 450px;
+      height: 400px;
+      bottom: -10%;
+      left: 20%;
+      background: radial-gradient(circle, rgba(212, 130, 106, 0.3) 0%, transparent 70%);
+      animation-duration: 26s;
+      animation-delay: -12s;
+      opacity: 0.45;
+    }
+
+    .aurora-blob:nth-child(4) {
+      width: 350px;
+      height: 300px;
+      top: 55%;
+      left: 35%;
+      background: radial-gradient(circle, rgba(232, 213, 196, 0.5) 0%, transparent 70%);
+      animation-duration: 20s;
+      animation-delay: -4s;
+      opacity: 0.6;
+    }
+
+    @keyframes auroraFloat {
+      0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+      25% { transform: translate(40px, -30px) scale(1.08) rotate(3deg); }
+      50% { transform: translate(20px, 50px) scale(0.95) rotate(-2deg); }
+      75% { transform: translate(-30px, 20px) scale(1.05) rotate(2deg); }
+      100% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+    }
+
+    /* WAVE SVG */
+    .wave-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+      height: 60px;
+    }
+
+    .wave-path {
+      fill: rgba(242, 196, 176, 0.18);
+      animation: waveDrift 8s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+
+    .wave-path2 {
+      fill: rgba(201, 169, 110, 0.1);
+      animation: waveDrift 11s ease-in-out infinite alternate-reverse;
+      transform-origin: center;
+    }
+
+    @keyframes waveDrift {
+      0% { d: path("M0,30 C150,55 350,5 500,30 C650,55 850,5 1000,30 C1150,55 1350,5 1440,30 L1440,60 L0,60 Z"); }
+      100% { d: path("M0,30 C150,5 350,55 500,30 C650,5 850,55 1000,30 C1150,5 1350,55 1440,30 L1440,60 L0,60 Z"); }
+    }
+
+    /* GREETING OVERLAY */
+    .greeting-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .greeting-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .greeting-emoji {
+      font-size: 52px;
+      animation: heartbeat 2s ease infinite;
+    }
+
+    .greeting-label {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #a08070;
+    }
+
+    .greeting-name-input {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      border: none;
+      border-bottom: 2px solid var(--blush);
+      background: transparent;
+      text-align: center;
+      color: var(--deep);
+      outline: none;
+      padding: 8px 16px;
+      width: 260px;
+      transition: border-color 0.3s;
+    }
+
+    .greeting-name-input:focus {
+      border-color: var(--rose);
+    }
+
+    .greeting-name-input::placeholder {
+      color: #c9b0a0;
+      font-style: italic;
+    }
+
+    .greeting-btn {
+      margin-top: 12px;
+      padding: 12px 36px;
+      background: var(--rose);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .greeting-btn:hover {
+      transform: scale(1.06);
+      box-shadow: 0 8px 28px rgba(212, 130, 106, 0.38);
+    }
+
+    /* CURSOR */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: var(--rose);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.15s ease;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring {
+      position: fixed;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid var(--rose);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transition: all 0.35s ease;
+      transform: translate(-50%, -50%);
+      opacity: 0.5;
+    }
+
+    /* PARTICLES */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+
+    .particle.circle {
+      border-radius: 50%;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.3; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
+    }
+
+    .burst-heart {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9997;
+      font-size: 22px;
+      animation: burstFly 1.2s ease forwards;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes burstFly {
+      0% { opacity: 1; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.5); }
+      60% { opacity: 1; }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--dx2)), calc(-50% + var(--dy2))) scale(1.4); }
+    }
+
+    /* MUSIC BUTTON */
+    .music-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      border: 1.5px solid var(--blush);
+      box-shadow: 0 4px 20px rgba(212, 130, 106, 0.2);
+      cursor: pointer;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 3s;
+    }
+
+    .music-btn:hover {
+      box-shadow: 0 8px 28px rgba(212, 130, 106, 0.38);
+    }
+
+    .music-btn.playing {
+      animation: spinMusic 4s linear infinite;
+    }
+
+    @keyframes spinMusic {
+      to { transform: rotate(360deg); }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 60px 24px;
+      text-align: center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(242, 196, 176, 0.38) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rose);
+      background: rgba(212, 130, 106, 0.1);
+      border: 1px solid rgba(212, 130, 106, 0.3);
+      padding: 6px 18px;
+      border-radius: 40px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s ease forwards 0.3s;
+    }
+
+    .greeting-display {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3vw, 26px);
+      color: var(--rose);
+      font-style: italic;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeSlideUp 0.8s ease forwards 0.5s;
+      min-height: 36px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 10vw, 110px);
+      line-height: 1.0;
+      color: var(--deep);
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeSlideUp 1s ease forwards 0.6s;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+      display: block;
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 19px);
+      color: #7a5c4f;
+      max-width: 480px;
+      line-height: 1.75;
+      margin: 28px auto 0;
+      font-weight: 300;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeSlideUp 1s ease forwards 0.9s;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards 2.2s;
+      z-index: 1;
+    }
+
+    .scroll-hint span {
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+      opacity: 0.7;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--rose), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { transform: scaleY(1); opacity: 1 }
+      50% { transform: scaleY(0.6); opacity: 0.4 }
+    }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.75s cubic-bezier(0.23, 1, 0.32, 1), transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.25s; }
+    .reveal-delay-3 { transition-delay: 0.4s; }
+
+    /* SECTION / CARDS */
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    .shimmer-bar {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blush), var(--gold), var(--blush));
+      background-size: 200%;
+      border-radius: 2px;
+      margin: 20px auto 48px;
+      animation: shimmer 3s ease infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% center }
+      100% { background-position: -200% center }
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid rgba(212, 130, 106, 0.12);
+      box-shadow: 0 4px 30px rgba(58, 42, 34, 0.06);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blush), var(--rose), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(212, 130, 106, 0.18);
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      margin-bottom: 12px;
+      color: var(--deep);
+    }
+
+    .card-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #7a5c4f;
+      font-weight: 300;
+    }
+
+    /* MILESTONE */
+    .milestone-section {
+      text-align: center;
+      padding: 64px 24px;
+      background: linear-gradient(135deg, rgba(242, 196, 176, 0.2) 0%, rgba(201, 169, 110, 0.1) 100%);
+      border-radius: 28px;
+      margin: 48px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .milestone-section::after {
+      content: '🌸';
+      position: absolute;
+      font-size: 140px;
+      opacity: 0.05;
+      bottom: -20px;
+      right: -10px;
+      pointer-events: none;
+    }
+
+    .ms-days-big {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(72px, 14vw, 120px);
+      color: var(--rose);
+      line-height: 1;
+      font-style: italic;
+    }
+
+    .ms-label {
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a08070;
+      margin-top: 8px;
+    }
+
+    .ms-sub {
+      font-size: 17px;
+      color: #7a5c4f;
+      margin-top: 16px;
+      max-width: 340px;
+      margin-inline: auto;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .progress-wrap {
+      max-width: 240px;
+      margin: 28px auto 0;
+      background: rgba(242, 196, 176, 0.3);
+      border-radius: 20px;
+      height: 6px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 20px;
+      background: linear-gradient(90deg, var(--blush), var(--rose));
+      width: 0%;
+      transition: width 1.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    /* SECRET */
+    .secret-section {
+      text-align: center;
+      padding: 44px 24px;
+    }
+
+    .secret-hint {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #a08070;
+      margin-bottom: 20px;
+    }
+
+    .secret-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 36px;
+      background: white;
+      border: 1.5px solid var(--blush);
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--rose);
+      box-shadow: 0 4px 20px rgba(212, 130, 106, 0.12);
+      transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .secret-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(242, 196, 176, 0.3), rgba(201, 169, 110, 0.15));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .secret-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 12px 36px rgba(212, 130, 106, 0.28);
+    }
+
+    .secret-btn:hover::before {
+      opacity: 1;
+    }
+
+    .secret-btn .lock-icon {
+      font-size: 20px;
+      transition: transform 0.4s;
+    }
+
+    .secret-btn:hover .lock-icon {
+      transform: rotate(-20deg) scale(1.2);
+    }
+
+    /* MODAL */
+    .secret-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 8000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .secret-modal.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(58, 42, 34, 0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-card {
+      position: relative;
+      z-index: 1;
+      background: var(--cream);
+      border-radius: 28px;
+      padding: 52px 44px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 80px rgba(58, 42, 34, 0.22);
+      transform: scale(0.85) translateY(30px);
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .secret-modal.open .modal-card {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-envelope {
+      font-size: 52px;
+      display: block;
+      margin-bottom: 20px;
+      animation: swing 3s ease infinite;
+    }
+
+    @keyframes swing {
+      0%, 100% { transform: rotate(-5deg) }
+      50% { transform: rotate(5deg) }
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      color: var(--deep);
+      margin-bottom: 20px;
+    }
+
+    .modal-message {
+      font-size: 15.5px;
+      line-height: 1.88;
+      color: #7a5c4f;
+      font-weight: 300;
+      border-left: 3px solid var(--blush);
+      padding-left: 20px;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .modal-signature {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--rose);
+      font-size: 15px;
+    }
+
+    .modal-close {
+      margin-top: 28px;
+      padding: 11px 32px;
+      background: transparent;
+      border: 1.5px solid var(--blush);
+      border-radius: 40px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--rose);
+      transition: all 0.25s;
+    }
+
+    .modal-close:hover {
+      background: var(--rose);
+      color: white;
+      border-color: var(--rose);
+    }
+
+    /* PHOTO REVEAL */
+    .photo-reveal-wrap {
+      margin: 28px 0 20px;
+      text-align: center;
+    }
+
+    .photo-reveal-img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 18px;
+      box-shadow: 0 12px 48px rgba(58, 42, 34, 0.18);
+      display: none;
+      margin: 0 auto;
+      animation: photoAppear 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      object-fit: cover;
+    }
+
+    .photo-reveal-img.show {
+      display: block;
+    }
+
+    @keyframes photoAppear {
+      from { opacity: 0; transform: scale(0.88) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* QUOTE */
+    .quote-block {
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 120px;
+      color: var(--blush);
+      line-height: 0.5;
+      display: block;
+      margin-bottom: 24px;
+      opacity: 0.5;
+    }
+
+    .quote-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(22px, 4vw, 36px);
+      font-style: italic;
+      color: var(--deep);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .quote-author {
+      margin-top: 20px;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    /* FOOTER */
+    .footer {
+      text-align: center;
+      padding: 60px 24px;
+      border-top: 1px solid var(--soft);
+    }
+
+    .footer-heart {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 12px;
+      animation: heartbeat 2.5s ease infinite;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      color: #a08070;
+      letter-spacing: 0.05em;
+    }
+
+    /* CODE INPUT */
+    .code-input {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      letter-spacing: 0.5em;
+      text-align: center;
+      border: none;
+      border-bottom: 2px solid var(--blush);
+      background: transparent;
+      color: var(--deep);
+      outline: none;
+      padding: 8px 16px;
+      width: 180px;
+      margin-bottom: 6px;
+      transition: border-color 0.3s;
+    }
+
+    .code-input:focus {
+      border-color: var(--rose);
+    }
+
+    .code-input.shake {
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0) }
+      20% { transform: translateX(-8px) }
+      40% { transform: translateX(8px) }
+      60% { transform: translateX(-6px) }
+      80% { transform: translateX(6px) }
+    }
+
+    .code-error {
+      font-size: 12px;
+      color: var(--rose);
+      opacity: 0;
+      transition: opacity 0.3s;
+      margin-bottom: 16px;
+      min-height: 18px;
+    }
+
+    .code-error.show {
+      opacity: 1;
+    }
+
+    .modal-unlock-btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: var(--rose);
+      color: white;
+      border: none;
+      border-radius: 40px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 4px;
+    }
+
+    .modal-unlock-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 24px rgba(212, 130, 106, 0.35);
+    }
+
+    /* KEYFRAMES */
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(30px) }
+      to { opacity: 1; transform: translateY(0) }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1) }
+      15% { transform: scale(1.28) }
+      30% { transform: scale(1) }
+      45% { transform: scale(1.15) }
+      60% { transform: scale(1) }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- GREETING OVERLAY -->
+  <div class="greeting-overlay" id="greetingOverlay">
+    <span class="greeting-emoji">🌸</span>
+    <p class="greeting-label">Таны нэр хэн бэ?</p>
+    <input class="greeting-name-input" id="nameInput" type="text" placeholder="Нэрээ бичнэ үү..." maxlength="20"
+      autocomplete="off">
+    <button class="greeting-btn" id="greetingEnterBtn">Орж ирэх ✨</button>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <div class="particles" id="particles"></div>
+
+  <!-- AURORA BACKGROUND -->
+  <div class="aurora">
+    <div class="aurora-blob"></div>
+    <div class="aurora-blob"></div>
+    <div class="aurora-blob"></div>
+    <div class="aurora-blob"></div>
+  </div>
+
+  <!-- MUSIC BUTTON -->
+  <button class="music-btn" id="musicBtn" title="Хөгжим тоглуулах">🎵</button>
+
+  <!-- SECRET MODAL -->
+  <div class="secret-modal" id="secretModal">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card">
+
+      <!-- STEP 1: Code input -->
+      <div id="codeStep">
+        <span class="modal-envelope">🔐</span>
+        <h3 class="modal-title">Нууц код</h3>
+        <p style="font-size:14px;color:#a08070;margin-bottom:20px;line-height:1.6;">Энэ захидлыг нээхийн тулд<br>төрсөн өдрөө оруулна уу</p>
+        <input class="code-input" id="codeInput" type="text" placeholder="· · · ·" maxlength="10" autocomplete="off">
+        <p class="code-error" id="codeError">Код буруу байна 🌸</p>
+        <button class="modal-unlock-btn" id="unlockBtn">Нээх →</button>
+      </div>
+
+      <!-- STEP 2: Message revealed -->
+      <div id="messageStep" style="display:none;">
+        <span class="modal-envelope" style="animation:swing 3s ease infinite;">💌</span>
+        <h3 class="modal-title">Нууц захидал</h3>
+        <p class="modal-message" id="modalMsg">
+          Чамтай ярилцаж эхэлснээс хойш л өдөр бүр хэдэн зүйл хайлтаж байна — чи ямар хүн бол, юу дуртай вэ, юуг
+          инээдэгтэй харьцдаг вэ. Энэ бол жижигхэн ертөнц, гэхдээ чиний нэр дурдагдах болгонд дулаахан болдог. Баярлалаа
+          — зүгээр л өөртөө байсны төлөө. 🤍
+        </p>
+        <p class="modal-signature" id="modalSig">— Чамд зориулсан захидал</p>
+
+        <!-- PHOTO SECTION — зургийн нэрийг энд тохируулна уу -->
+        <div class="photo-reveal-wrap" id="photoWrap">
+          <img class="photo-reveal-img" id="photoRevealImg" src="enguun.jpg" alt="Зураг">
+        </div>
+
+        <button class="modal-close" id="modalClose">Хаах ✕</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="tag">✦ Чамд зориулж ✦</div>
+    <p class="greeting-display" id="greetingDisplay"></p>
+    <h1 class="hero-title">
+      Сайхан
+      <em>уулзалт</em>
+    </h1>
+    <p class="hero-sub">
+      Энэ жижигхэн зай чамд зориулагдсан — чиний эелдэг байдал, сонирхолтой яриа, халуун дулаан байдлын төлөө.
+    </p>
+    <div class="scroll-hint">
+      <span>доош</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- WAVE DIVIDER -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path class="wave-path"
+        d="M0,30 C150,55 350,5 500,30 C650,55 850,5 1000,30 C1150,55 1350,5 1440,30 L1440,60 L0,60 Z" />
+      <path class="wave-path2"
+        d="M0,40 C200,15 400,55 600,35 C800,15 1000,55 1200,35 C1300,25 1380,45 1440,40 L1440,60 L0,60 Z" />
+    </svg>
+  </div>
+
+  <div class="section">
+    <div class="shimmer-bar reveal"></div>
+
+    <div class="cards-grid">
+      <div class="card reveal reveal-delay-1">
+        <span class="card-icon">🌸</span>
+        <h3 class="card-title">Эелдэг зан</h3>
+        <p class="card-text">Чиний эелдэг байдал харилцааг онцгой болгодог. Үг бүр нь дулаан, анхаарал гүйцэтгэсэн байдаг.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <span class="card-icon">✨</span>
+        <h3 class="card-title">Сонирхолтой хүн</h3>
+        <p class="card-text">Чамтай ярилцах болгонд шинэ зүйл олж мэддэг. Чи их гоё сэтгэлгээтэй хүн юм.</p>
+      </div>
+      <div class="card reveal reveal-delay-3">
+        <span class="card-icon">🌿</span>
+        <h3 class="card-title">Цаашид...</h3>
+        <p class="card-text">Танилцаад удаагүй ч гэсэн чамтай илүү сайн танилцмаар байна. Энэ бол сайхан эхлэл. 🤍</p>
+      </div>
+    </div>
+
+    <!-- MILESTONE -->
+    <div class="milestone-section reveal" id="milestoneSection">
+      <div class="ms-days-big" id="daysCount">0</div>
+      <p class="ms-label">хоногийн нөхөрлөл ✦</p>
+      <p class="ms-sub" id="msSubText">Бага байж болох ч энэ 3 хоног дотор аль хэдийн дулаахан зүйл бий болсон байна.</p>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+    </div>
+
+    <!-- SECRET BUTTON -->
+    <div class="secret-section reveal">
+      <p class="secret-hint">Нэг нууц зүйл байна...</p>
+      <button class="secret-btn" id="secretBtn">
+        <span class="lock-icon">🔒</span>
+        Нууц захидал нээх
+      </button>
+    </div>
+
+    <!-- QUOTE -->
+    <div class="quote-block reveal">
+      <span class="quote-mark">"</span>
+      <p class="quote-text">Сайн хүнтэй танилцах нь амьдралыг баялаг болгодог нэгэн мөч.</p>
+      <p class="quote-author">— Чамд зориулсан үг</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer reveal">
+    <span class="footer-heart">🤍</span>
+    <p class="footer-text" id="footerText">Цаашдаа ч гоё яриа, сайхан мөчүүд байх болтугай ✦</p>
+  </footer>
+
+  <script>
+    // ── GREETING ──
+    const overlay = document.getElementById('greetingOverlay');
+    const nameInput = document.getElementById('nameInput');
+    const enterBtn = document.getElementById('greetingEnterBtn');
+    const greetingEl = document.getElementById('greetingDisplay');
+    const modalSig = document.getElementById('modalSig');
+    let userName = '';
+
+    function enterSite() {
+      const raw = nameInput.value.trim();
+      userName = raw || 'Найз минь';
+      overlay.classList.add('hidden');
+      greetingEl.textContent = `Тавтай морилно уу, ${userName} 🌸`;
+      modalSig.textContent = `— ${userName}-д зориулсан захидал`;
+      document.getElementById('footerText').textContent = `${userName}, цаашдаа ч гоё яриа, сайхан мөчүүд байх болтугай ✦`;
+    }
+    enterBtn.addEventListener('click', enterSite);
+    nameInput.addEventListener('keydown', e => { if (e.key === 'Enter') enterSite(); });
+
+    // ── CURSOR ──
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    });
+    (function animateRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+    document.addEventListener('mousedown', () => cursor.style.transform = 'translate(-50%,-50%) scale(1.8)');
+    document.addEventListener('mouseup', () => cursor.style.transform = 'translate(-50%,-50%) scale(1)');
+
+    // ── PARTICLES ──
+    const pContainer = document.getElementById('particles');
+    const heartEmojis = ['🤍', '🌸', '✨', '💫', '🌿', '🫧', '⭐'];
+    const colors = ['#f2c4b0', '#d4826a', '#c9a96e', '#e8d5c4', '#fde8d8'];
+
+    for (let i = 0; i < 12; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle circle';
+      const sz = Math.random() * 8 + 3;
+      p.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random() * 100}%;background:${colors[Math.floor(Math.random() * colors.length)]};animation-duration:${Math.random() * 18 + 12}s;animation-delay:${Math.random() * 10}s;`;
+      pContainer.appendChild(p);
+    }
+    for (let i = 0; i < 14; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      p.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      p.style.cssText = `left:${Math.random() * 100}%;font-size:${Math.random() * 12 + 10}px;animation-duration:${Math.random() * 20 + 14}s;animation-delay:${Math.random() * 14}s;`;
+      pContainer.appendChild(p);
+    }
+
+    // Click burst hearts
+    document.addEventListener('click', e => {
+      if (e.target.closest('.greeting-overlay,.secret-modal,.music-btn,.secret-btn,.modal-close,.greeting-btn')) return;
+      const emojis = ['🤍', '🌸', '💫', '✨', '🌿'];
+      for (let i = 0; i < 6; i++) {
+        const h = document.createElement('div');
+        h.className = 'burst-heart';
+        const angle = (Math.PI * 2 / 6) * i - Math.PI / 2;
+        const dist = 55 + Math.random() * 45;
+        h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        h.style.setProperty('--dx', '0px'); h.style.setProperty('--dy', '0px');
+        h.style.setProperty('--dx2', Math.cos(angle) * dist + 'px');
+        h.style.setProperty('--dy2', Math.sin(angle) * dist + 'px');
+        h.style.left = e.clientX + 'px'; h.style.top = e.clientY + 'px';
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 1300);
+      }
+    });
+
+    // ── MUSIC (Web Audio — gentle lullaby melody) ──
+    const musicBtn = document.getElementById('musicBtn');
+    let audioCtx = null, gainNode = null, playing = false, melodyTimer = null, melodyIdx = 0;
+
+    const melody = [
+      { f: 523.25, d: 0.5 }, { f: 659.25, d: 0.5 }, { f: 783.99, d: 0.5 }, { f: 1046.5, d: 0.7 },
+      { f: 783.99, d: 0.4 }, { f: 698.46, d: 0.4 }, { f: 659.25, d: 0.6 },
+      { f: 587.33, d: 0.5 }, { f: 523.25, d: 0.5 }, { f: 493.88, d: 0.5 }, { f: 440.00, d: 0.7 },
+      { f: 392.00, d: 0.4 }, { f: 349.23, d: 0.4 }, { f: 329.63, d: 1.0 },
+      { f: 349.23, d: 0.4 }, { f: 392.00, d: 0.4 }, { f: 440.00, d: 0.6 },
+      { f: 493.88, d: 0.5 }, { f: 523.25, d: 1.2 },
+    ];
+
+    function playNote(freq, duration) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      osc.connect(g); g.connect(gainNode);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+      g.gain.setValueAtTime(0, audioCtx.currentTime);
+      g.gain.linearRampToValueAtTime(0.15, audioCtx.currentTime + 0.06);
+      g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration * 0.88);
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function scheduleMelody() {
+      if (!playing) return;
+      const note = melody[melodyIdx % melody.length];
+      playNote(note.f, note.d);
+      melodyIdx++;
+      melodyTimer = setTimeout(scheduleMelody, note.d * 1000 + 90);
+    }
+
+    musicBtn.addEventListener('click', () => {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioCtx.createGain();
+        gainNode.gain.setValueAtTime(0.8, audioCtx.currentTime);
+        gainNode.connect(audioCtx.destination);
+      }
+      playing = !playing;
+      if (playing) {
+        musicBtn.textContent = '🎶';
+        musicBtn.style.animation = 'spinMusic 4s linear infinite';
+        scheduleMelody();
+      } else {
+        musicBtn.textContent = '🎵';
+        musicBtn.style.animation = 'fadeIn 1s ease forwards 3s';
+        clearTimeout(melodyTimer);
+      }
+    });
+
+    // ── SECRET MODAL ──
+    const secretBtn = document.getElementById('secretBtn');
+    const secretModal = document.getElementById('secretModal');
+    const modalClose = document.getElementById('modalClose');
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const codeInput = document.getElementById('codeInput');
+    const codeError = document.getElementById('codeError');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const codeStep = document.getElementById('codeStep');
+    const messageStep = document.getElementById('messageStep');
+    const photoRevealImg = document.getElementById('photoRevealImg');
+    const SECRET_CODE = '10.1';
+
+    secretBtn.addEventListener('click', () => {
+      // Reset to code step each time
+      codeStep.style.display = 'block';
+      messageStep.style.display = 'none';
+      codeInput.value = '';
+      codeError.classList.remove('show');
+      photoRevealImg.classList.remove('show');
+      secretModal.classList.add('open');
+      setTimeout(() => codeInput.focus(), 400);
+    });
+
+    function tryUnlock() {
+      const val = codeInput.value.trim();
+      if (val === SECRET_CODE) {
+        codeStep.style.display = 'none';
+        messageStep.style.display = 'block';
+
+        // Show photo automatically after a brief delay
+        setTimeout(() => {
+          photoRevealImg.classList.add('show');
+          // Burst hearts from photo
+          for (let i = 0; i < 8; i++) {
+            setTimeout(() => {
+              const h = document.createElement('div');
+              h.className = 'burst-heart';
+              const angle = Math.random() * Math.PI * 2;
+              const dist = 60 + Math.random() * 80;
+              const emojis = ['🌸', '🤍', '✨'];
+              h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+              h.style.setProperty('--dx', '0px'); h.style.setProperty('--dy', '0px');
+              h.style.setProperty('--dx2', Math.cos(angle) * dist + 'px');
+              h.style.setProperty('--dy2', Math.sin(angle) * dist + 'px');
+              h.style.left = (window.innerWidth / 2) + 'px';
+              h.style.top = (window.innerHeight / 2) + 'px';
+              document.body.appendChild(h);
+              setTimeout(() => h.remove(), 1300);
+            }, i * 80);
+          }
+        }, 600);
+
+        // Heart shower on reveal
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            const h = document.createElement('div');
+            h.className = 'burst-heart';
+            const emojis = ['🤍', '💌', '🌸', '✨', '💫'];
+            h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            const angle = Math.random() * Math.PI * 2;
+            const dist = 80 + Math.random() * 130;
+            h.style.setProperty('--dx', '0px'); h.style.setProperty('--dy', '0px');
+            h.style.setProperty('--dx2', Math.cos(angle) * dist + 'px');
+            h.style.setProperty('--dy2', Math.sin(angle) * dist + 'px');
+            h.style.left = (window.innerWidth / 2) + 'px';
+            h.style.top = (window.innerHeight / 2) + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 1400);
+          }, i * 60);
+        }
+      } else {
+        codeInput.classList.remove('shake');
+        void codeInput.offsetWidth;
+        codeInput.classList.add('shake');
+        codeError.classList.add('show');
+        setTimeout(() => codeError.classList.remove('show'), 2000);
+      }
+    }
+
+    unlockBtn.addEventListener('click', tryUnlock);
+    codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+
+    const closeModal = () => secretModal.classList.remove('open');
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+
+    // ── SCROLL REVEAL ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // ── MILESTONE COUNTER ──
+    const daysEl = document.getElementById('daysCount');
+    const progressBar = document.getElementById('progressBar');
+    const TARGET_DAYS = 3;
+    let countStarted = false;
+
+    const milestoneObs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !countStarted) {
+          countStarted = true;
+          let n = 0;
+          const interval = setInterval(() => {
+            n++;
+            daysEl.textContent = n;
+            if (n >= TARGET_DAYS) {
+              clearInterval(interval);
+              setTimeout(() => { progressBar.style.width = '30%'; }, 200);
+            }
+          }, 380);
+        }
+      });
+    }, { threshold: 0.3 });
+    milestoneObs.observe(document.getElementById('milestoneSection'));
+  </script>
+</body>
+
+</html>
