@@ -94,11 +94,25 @@
     }
 
     @keyframes auroraFloat {
-      0% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
-      25% { transform: translate(40px, -30px) scale(1.08) rotate(3deg); }
-      50% { transform: translate(20px, 50px) scale(0.95) rotate(-2deg); }
-      75% { transform: translate(-30px, 20px) scale(1.05) rotate(2deg); }
-      100% { transform: translate(0px, 0px) scale(1) rotate(0deg); }
+      0% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+      }
+
+      25% {
+        transform: translate(40px, -30px) scale(1.08) rotate(3deg);
+      }
+
+      50% {
+        transform: translate(20px, 50px) scale(0.95) rotate(-2deg);
+      }
+
+      75% {
+        transform: translate(-30px, 20px) scale(1.05) rotate(2deg);
+      }
+
+      100% {
+        transform: translate(0px, 0px) scale(1) rotate(0deg);
+      }
     }
 
     /* WAVE SVG */
@@ -129,8 +143,13 @@
     }
 
     @keyframes waveDrift {
-      0% { d: path("M0,30 C150,55 350,5 500,30 C650,55 850,5 1000,30 C1150,55 1350,5 1440,30 L1440,60 L0,60 Z"); }
-      100% { d: path("M0,30 C150,5 350,55 500,30 C650,5 850,55 1000,30 C1150,5 1350,55 1440,30 L1440,60 L0,60 Z"); }
+      0% {
+        d: path("M0,30 C150,55 350,5 500,30 C650,55 850,5 1000,30 C1150,55 1350,5 1440,30 L1440,60 L0,60 Z");
+      }
+
+      100% {
+        d: path("M0,30 C150,5 350,55 500,30 C650,5 850,55 1000,30 C1150,5 1350,55 1440,30 L1440,60 L0,60 Z");
+      }
     }
 
     /* GREETING OVERLAY */
@@ -257,10 +276,23 @@
     }
 
     @keyframes floatUp {
-      0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
-      10% { opacity: 0.7; }
-      90% { opacity: 0.3; }
-      100% { transform: translateY(-10vh) rotate(360deg) scale(1.1); opacity: 0; }
+      0% {
+        transform: translateY(110vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.7;
+      }
+
+      90% {
+        opacity: 0.3;
+      }
+
+      100% {
+        transform: translateY(-10vh) rotate(360deg) scale(1.1);
+        opacity: 0;
+      }
     }
 
     .burst-heart {
@@ -273,9 +305,19 @@
     }
 
     @keyframes burstFly {
-      0% { opacity: 1; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.5); }
-      60% { opacity: 1; }
-      100% { opacity: 0; transform: translate(calc(-50% + var(--dx2)), calc(-50% + var(--dy2))) scale(1.4); }
+      0% {
+        opacity: 1;
+        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.5);
+      }
+
+      60% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--dx2)), calc(-50% + var(--dy2))) scale(1.4);
+      }
     }
 
     /* MUSIC BUTTON */
@@ -309,7 +351,9 @@
     }
 
     @keyframes spinMusic {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     /* HERO */
@@ -422,8 +466,17 @@
     }
 
     @keyframes scrollPulse {
-      0%, 100% { transform: scaleY(1); opacity: 1 }
-      50% { transform: scaleY(0.6); opacity: 0.4 }
+
+      0%,
+      100% {
+        transform: scaleY(1);
+        opacity: 1
+      }
+
+      50% {
+        transform: scaleY(0.6);
+        opacity: 0.4
+      }
     }
 
     /* SCROLL REVEAL */
@@ -438,9 +491,17 @@
       transform: translateY(0);
     }
 
-    .reveal-delay-1 { transition-delay: 0.1s; }
-    .reveal-delay-2 { transition-delay: 0.25s; }
-    .reveal-delay-3 { transition-delay: 0.4s; }
+    .reveal-delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.25s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.4s;
+    }
 
     /* SECTION / CARDS */
     .section {
@@ -460,8 +521,13 @@
     }
 
     @keyframes shimmer {
-      0% { background-position: 200% center }
-      100% { background-position: -200% center }
+      0% {
+        background-position: 200% center
+      }
+
+      100% {
+        background-position: -200% center
+      }
     }
 
     .cards-grid {
@@ -700,8 +766,15 @@
     }
 
     @keyframes swing {
-      0%, 100% { transform: rotate(-5deg) }
-      50% { transform: rotate(5deg) }
+
+      0%,
+      100% {
+        transform: rotate(-5deg)
+      }
+
+      50% {
+        transform: rotate(5deg)
+      }
     }
 
     .modal-title {
@@ -771,8 +844,15 @@
     }
 
     @keyframes photoAppear {
-      from { opacity: 0; transform: scale(0.88) translateY(20px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
+      from {
+        opacity: 0;
+        transform: scale(0.88) translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
     }
 
     /* QUOTE */
@@ -855,11 +935,27 @@
     }
 
     @keyframes shake {
-      0%, 100% { transform: translateX(0) }
-      20% { transform: translateX(-8px) }
-      40% { transform: translateX(8px) }
-      60% { transform: translateX(-6px) }
-      80% { transform: translateX(6px) }
+
+      0%,
+      100% {
+        transform: translateX(0)
+      }
+
+      20% {
+        transform: translateX(-8px)
+      }
+
+      40% {
+        transform: translateX(8px)
+      }
+
+      60% {
+        transform: translateX(-6px)
+      }
+
+      80% {
+        transform: translateX(6px)
+      }
     }
 
     .code-error {
@@ -897,21 +993,49 @@
 
     /* KEYFRAMES */
     @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(30px) }
-      to { opacity: 1; transform: translateY(0) }
+      from {
+        opacity: 0;
+        transform: translateY(30px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0 }
-      to { opacity: 1 }
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
     }
 
     @keyframes heartbeat {
-      0%, 100% { transform: scale(1) }
-      15% { transform: scale(1.28) }
-      30% { transform: scale(1) }
-      45% { transform: scale(1.15) }
-      60% { transform: scale(1) }
+
+      0%,
+      100% {
+        transform: scale(1)
+      }
+
+      15% {
+        transform: scale(1.28)
+      }
+
+      30% {
+        transform: scale(1)
+      }
+
+      45% {
+        transform: scale(1.15)
+      }
+
+      60% {
+        transform: scale(1)
+      }
     }
   </style>
 </head>
@@ -951,7 +1075,8 @@
       <div id="codeStep">
         <span class="modal-envelope">🔐</span>
         <h3 class="modal-title">Нууц код</h3>
-        <p style="font-size:14px;color:#a08070;margin-bottom:20px;line-height:1.6;">Энэ захидлыг нээхийн тулд<br>төрсөн өдрөө оруулна уу</p>
+        <p style="font-size:14px;color:#a08070;margin-bottom:20px;line-height:1.6;">Энэ захидлыг нээхийн тулд<br>төрсөн
+          өдрөө оруулна уу</p>
         <input class="code-input" id="codeInput" type="text" placeholder="· · · ·" maxlength="10" autocomplete="off">
         <p class="code-error" id="codeError">Код буруу байна 🌸</p>
         <button class="modal-unlock-btn" id="unlockBtn">Нээх →</button>
@@ -1013,7 +1138,8 @@
       <div class="card reveal reveal-delay-1">
         <span class="card-icon">🌸</span>
         <h3 class="card-title">Эелдэг зан</h3>
-        <p class="card-text">Чиний эелдэг байдал харилцааг онцгой болгодог. Үг бүр нь дулаан, анхаарал гүйцэтгэсэн байдаг.</p>
+        <p class="card-text">Чиний эелдэг байдал харилцааг онцгой болгодог. Үг бүр нь дулаан, анхаарал гүйцэтгэсэн
+          байдаг.</p>
       </div>
       <div class="card reveal reveal-delay-2">
         <span class="card-icon">✨</span>
@@ -1031,7 +1157,8 @@
     <div class="milestone-section reveal" id="milestoneSection">
       <div class="ms-days-big" id="daysCount">0</div>
       <p class="ms-label">хоногийн нөхөрлөл ✦</p>
-      <p class="ms-sub" id="msSubText">Бага байж болох ч энэ 3 хоног дотор аль хэдийн дулаахан зүйл бий болсон байна.</p>
+      <p class="ms-sub" id="msSubText">Бага байж болох ч энэ 3 хоног дотор аль хэдийн дулаахан зүйл бий болсон байна.
+      </p>
       <div class="progress-wrap">
         <div class="progress-bar" id="progressBar"></div>
       </div>
